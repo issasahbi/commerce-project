@@ -3,7 +3,7 @@
     <v-layout>
       <app-nav></app-nav>
       <cart-drawer></cart-drawer>
-      <v-main>
+      <v-main style="padding-top: 150px">
         <slot></slot>
       </v-main>
       <app-footer></app-footer>
