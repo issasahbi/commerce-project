@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <v-layout>
+    <v-layout class="position-relative">
       <app-nav></app-nav>
       <cart-drawer></cart-drawer>
       <v-main style="padding-top: 150px">
