@@ -1,17 +1,19 @@
 <template>
   <div class="layout">
     <v-layout class="position-relative">
-      <app-nav></app-nav>
-      <cart-drawer></cart-drawer>
+      <cart-drawer />
       <v-main style="padding-top: 150px">
         <slot></slot>
       </v-main>
-      <app-footer></app-footer>
+      <app-nav />
+      <fixed-nav />
+      <app-footer />
     </v-layout>
   </div>
 </template>
 <script>
 import AppNav from "@/components/global/AppNav.vue";
+import FixedNav from "@/components/global/FixedNav.vue";
 import AppFooter from "@/components/global/AppFooter.vue";
 import CartDrawer from "@/components/global/CartDrawer.vue";
 export default {
@@ -22,6 +24,7 @@ export default {
     AppNav,
     AppFooter,
     CartDrawer,
+    FixedNav,
   },
 };
 </script>
