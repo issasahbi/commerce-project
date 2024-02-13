@@ -13,7 +13,7 @@ import TheFeatures from "@/components/home_pages/TheFeatures.vue";
 import TopOffers from "@/components/home_pages/TopOffers.vue";
 import { productsModule } from "@/stores/products";
 import { mapActions, mapState } from "pinia";
-import FlashDeals from "@/components/home_pages/FlashDeals.vue";
+import FlashDeals from "@/components/home_pages/ProductsSwiper.vue";
 export default {
   name: "HomeView",
   components: {
