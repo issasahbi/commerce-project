@@ -9,7 +9,7 @@
               <div class="hint">Sale up to 70% off on selected items*</div>
               <v-btn
                 class="py-4 px-10"
-                density="combact"
+                density="compact"
                 variant="outlined"
                 style="border-radius: 30px; text-transform: none"
               >

@@ -48,7 +48,7 @@
             disabled
             color="yellow-darken-2"
             size="x-small"
-            density="combact"
+            density="compact"
           >
           </v-rating>
           <v-card-text class="pl-0 pt-0">
@@ -81,7 +81,7 @@
           </v-btn-toggle>
           <div class="mt-5">
             <v-btn
-              density="combact"
+              density="compact"
               class="py-2 px-12"
               style="text-transform: none; border-radius: 30px"
               variant="outlined"
