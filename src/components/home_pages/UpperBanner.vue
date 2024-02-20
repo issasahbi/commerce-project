@@ -8,7 +8,8 @@
               <h3><span>Huge Saving</span> on UHD Televisions</h3>
               <div class="hint">Sale up to 70% off on selected items*</div>
               <v-btn
-                class="py-4 px-10"
+                height="50"
+                width="180"
                 density="compact"
                 variant="outlined"
                 style="border-radius: 30px; text-transform: none"
