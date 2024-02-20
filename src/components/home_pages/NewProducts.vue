@@ -6,7 +6,16 @@
     </div>
     <v-container fluid>
       <v-row>
-        <v-col cols="7" style="padding-top: 75px"
+        <v-col cols="7" v-if="!products.length" style="padding-top: 75px">
+          <v-row>
+            <v-col cols="4" v-for="num in 3" :key="num">
+              <v-skeleton-loader
+                type="image, article, button"
+              ></v-skeleton-loader>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col cols="7" style="padding-top: 75px" v-else
           ><Swiper
             :pagination="{ el: '.swiper-pagination', clickable: true }"
             :modules="modules"
@@ -38,11 +47,19 @@
                 </v-hover>
 
                 <v-card-text class="pl-0 pb-0">
-                  ({{ item.title }})
+                  <!-- ({{ item.title }})
                   {{
                     item.description.split(" ").length <= 5
                       ? item.description
                       : item.description.split(" ").slice(0, 5).join(" ")
+                  }} -->
+                  {{
+                    `(${item.title})  ${item.description}`.length <= 40
+                      ? `(${item.title})  ${item.description}`
+                      : `(${item.title})  ${item.description}`.substring(
+                          0,
+                          38
+                        ) + "..."
                   }}
                 </v-card-text>
                 <v-rating
@@ -109,6 +126,7 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import { Pagination, Autoplay } from "swiper/modules";
+import { VSkeletonLoader } from "vuetify/lib/labs/components.mjs";
 export default {
   props: {
     products: {
@@ -118,6 +136,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    VSkeletonLoader,
   },
   setup() {
     return {
