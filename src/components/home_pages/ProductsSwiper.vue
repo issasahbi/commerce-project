@@ -1,8 +1,11 @@
 <template>
   <div class="products-swiper pt-16">
     <div class="title mb-12 px-5 d-flex align-center justify-space-between">
-      <h2 style="font-weight: 900; font-size: 35px" class="text-red">
-        Flash Deals
+      <h2
+        style="font-weight: 900; font-size: 35px"
+        :class="[`text-${titleColor}`]"
+      >
+        {{ title }}
       </h2>
       <a href="#" class="text-black" style="font-size: 16px">Shop All</a>
     </div>
@@ -105,6 +108,12 @@ export default {
   props: {
     products: {
       type: Array,
+    },
+    title: {
+      type: String,
+    },
+    titleColor: {
+      type: String,
     },
   },
   components: {
