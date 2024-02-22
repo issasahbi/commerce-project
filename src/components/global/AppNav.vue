@@ -3,7 +3,13 @@
     <v-app-bar color="#02218f" class="pt-3" height="fit-content" absolute>
       <v-container fluid>
         <v-row>
-          <v-col cols="3"> <img src="@/assets/images/logo.png" /> </v-col>
+          <v-col cols="3">
+            <img
+              src="@/assets/images/logo.png"
+              @click="$router.push({ name: 'home' })"
+              style="cursor: pointer"
+            />
+          </v-col>
           <v-col cols="5">
             <div class="search position-relative" style="width: 90%">
               <input
@@ -119,21 +125,27 @@
           </v-col>
 
           <v-row class="mt-6">
-            <v-col cols="5">
+            <v-col cols="8">
               <ul
-                class="links d-flex text-white justify-lg-space-between"
+                class="links d-flex text-white justify-lg-space-around"
                 style="list-style: none"
               >
-                <li>Theme Demo</li>
-                <li>Shop</li>
-                <li>Product</li>
-                <li>New In</li>
-                <li>Must Have</li>
-                <li>Collections</li>
+                <li v-for="category in categories" :key="category.title">
+                  <router-link
+                    :to="{
+                      name: 'products_category',
+                      params: {
+                        category: category.route,
+                        title: category.title,
+                      },
+                    }"
+                    style="color: white; text-decoration: none"
+                    >{{ category.title }}</router-link
+                  >
+                </li>
               </ul>
             </v-col>
-            <v-col cols="2"></v-col>
-            <v-col cols="5" class="d-flex justify-end" style="gap: 35px">
+            <v-col cols="4" class="d-flex justify-end" style="gap: 35px">
               <div class="help d-flex align-center" style="gap: 5px">
                 <svg
                   aria-hidden="true"
@@ -192,12 +204,17 @@
   </div>
 </template>
 <script>
+import { productsModule } from "@/stores/products";
+import { mapState } from "pinia";
 export default {
   inject: ["Emitter"],
   methods: {
     openCart() {
       this.Emitter.emit("openCart");
     },
+  },
+  computed: {
+    ...mapState(productsModule, ["categories"]),
   },
   data: () => ({
     selectedLang: [
