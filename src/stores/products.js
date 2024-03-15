@@ -72,7 +72,6 @@ export const productsModule = defineStore("productsModules", {
       await axios
         .get(`https://dummyjson.com/products/${productId}`)
         .then((res) => {
-          console.log(res.data);
           this.Product = res.data;
         });
     },
