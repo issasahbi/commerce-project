@@ -28,7 +28,7 @@
               <v-card elevation="0" class="pb-5">
                 <v-hover v-slot="{ isHovering, props }">
                   <div
-                    class="img-parent"
+                    class="img-parent position-relative"
                     style="height: 200px; overflow: hidden"
                   >
                     <img
@@ -43,6 +43,26 @@
                       }`"
                       v-bind="props"
                     />
+                    <v-btn
+                      density="compact"
+                      width="70"
+                      height="35"
+                      variant="outlined"
+                      class="bg-white quick-view-btn"
+                      style="
+                        text-transform: none;
+                        text-decoration: none;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        border-radius: 30px;
+                        transition: 0.2 all ease-in-out;
+                        opacity: 0;
+                      "
+                      @click="openQuickView(item)"
+                      >Quick View</v-btn
+                    >
                   </div>
                 </v-hover>
 
@@ -134,6 +154,7 @@ import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import { Pagination, Autoplay } from "swiper/modules";
 import { VSkeletonLoader } from "vuetify/lib/labs/components.mjs";
 export default {
+  inject: ["Emitter"],
   props: {
     products: {
       type: Array,
@@ -152,5 +173,17 @@ export default {
   data: () => ({
     showenItem: {},
   }),
+  methods: {
+    openQuickView(product) {
+      this.Emitter.emit("openQuickView", product);
+    },
+  },
 };
 </script>
+<style lang="scss">
+.img-parent:hover {
+  .quick-view-btn {
+    opacity: 1 !important;
+  }
+}
+</style>

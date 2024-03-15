@@ -21,7 +21,7 @@
               <v-card elevation="0" class="pb-5">
                 <v-hover v-slot="{ isHovering, props }">
                   <div
-                    class="img-parent"
+                    class="img-parent position-relative"
                     style="height: 200px; overflow: hidden"
                   >
                     <img
@@ -36,6 +36,28 @@
                       }`"
                       v-bind="props"
                     />
+                    <v-btn
+                      density="compact"
+                      width="85"
+                      height="35"
+                      variant="outlined"
+                      class="bg-white quick-view-btn"
+                      style="
+                        text-decoration: none;
+                        text-transform: none;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        border-radius: 30px;
+                        font-size: 13px;
+                        transition: 0.2 all ease-in-out;
+                        opacity: 0;
+                      "
+                      @click="openQuickView(item)"
+                    >
+                      Quick View</v-btn
+                    >
                   </div>
                 </v-hover>
 
@@ -124,13 +146,17 @@ import { productsModule } from "@/stores/products";
 import { mapActions, mapState } from "pinia";
 
 export default {
+  inject: ["Emitter"],
+  methods: {
+    openQuickView(product) {
+      this.Emitter.emit("openQuickView", product);
+    },
+    ...mapActions(productsModule, ["getProductsByCategory"]),
+  },
   data: () => ({
     showenItem: {},
     loading: false,
   }),
-  methods: {
-    ...mapActions(productsModule, ["getProductsByCategory"]),
-  },
   computed: {
     ...mapState(productsModule, ["categoryProducts"]),
   },
@@ -150,3 +176,10 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.img-parent:hover {
+  .quick-view-btn {
+    opacity: 1 !important;
+  }
+}
+</style>
